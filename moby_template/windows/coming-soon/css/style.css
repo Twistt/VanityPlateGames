@@ -1,0 +1,319 @@
+/*=======================
+Theme: MobyApp Mobile Application Template
+Author: JLP Media
+Email: jennpereira13@gmail.com / lianplameras@gmail.com
+Version: 1.0
+Date Created: September 5, 2014
+=======================
+CSS Style Structure
+- General
+- Preloader
+- Navigation
+- Home Section
+- Features
+- Reviews
+- Overview 
+- About Section
+- Download 
+- Facts Counter
+- Screenshots
+- Subscription
+- Map
+- Contact
+- Footer
+=======================*/
+/***********************
+****** General *********
+***********************/
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,500,500italic,700,700italic,900,900italic);
+body,
+html {
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+html { font-size: 100% }
+*,
+*:after,
+*::before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+p {
+    font-size: 1rem;
+    line-height: 1.625em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+a {
+    font-size: 1em;
+    line-height: 1.625rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+}
+a:hover { text-decoration: none }
+h1,
+h2,
+h3 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+}
+h1 {
+    font-size: 3rem;
+    line-height: 3.5rem;
+    font-weight: 200;
+}
+h2 {
+    font-size: 2.5rem;
+    line-height: 3.6rem;
+    margin-bottom: 1.7rem;
+    font-weight: 200;
+}
+h3 {
+    font-size: 1.2rem;
+    line-height: 2.25rem;
+    font-weight: 300;
+}
+h4 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    line-height: 1.625rem;
+    font-weight: 400;
+}
+h5 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8125rem;
+    line-height: 1rem;
+    font-weight: 300;
+    color: white;
+    text-transform: uppercase;
+}
+ul { list-style: none }
+ul,
+menu,
+dir {
+    display: block;
+    list-style: none;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 00px;
+}
+li { margin-top: 1.625em }
+li a { display: inline }
+hr {
+    margin-top: 4.568em;
+    margin-bottom: 4.568em;
+}
+.left { text-align: left }
+.right { text-align: right }
+.padding-left { padding-left: 60px }
+.bottom { padding-bottom: 40px }
+.top { padding-top: 40px }
+.space {
+    padding-top: 40px;
+}
+.highlight { color: #da2d2d }
+span.bold { font-weight: 700 }
+span.light { font-weight: 300 }
+a.btn { margin: 0 10px 0 0 }
+/**************************
+******** PRELOADER ********
+**************************/
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff; /* change if the mask should have another color then white */
+    z-index: 9999; /* makes sure it stays on top */
+}
+#status {
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    left: 0%; /* centers the loading animation horizontally one the screen */
+    top: 15%; /* centers the loading animation vertically one the screen */
+    background-image: url(../../assets/img/loading.gif); /* path to your loading animation */
+    background-repeat: no-repeat;
+    background-position: center;
+    /*margin: -100px 0 0 -100px; */ /* is width and height divided by two */
+}
+
+/**************************
+****** Home Section *******
+**************************/
+#home {
+    padding-top: 100px;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    color: #ffffff;
+    background:rgba(0, 0, 0, 0.80);
+}
+
+ul#countdown li {
+display: inline-block;
+/* padding: 10px 30px; */
+width: 100px;
+/* height: 150px; */
+text-align: center;
+}
+
+#countdown{
+    border-top: 1px dashed;
+    border-bottom: 1px dashed;
+    padding-bottom: 10px;
+}
+
+.counter{
+    padding-top: 20px;
+    padding-bottom: 60px;
+
+}
+
+.days,
+.hours,
+.minutes,
+.seconds{
+    font-size: 36px;
+}
+
+.btn-learn {
+    background-color: #da2d2d;
+    padding: 15px 25px;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-learn:hover {
+    color: #ffffff;
+    background-color: #C13030;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+.btn-download {
+    color: #ffffff;
+    background-color: #494C53;
+    padding: 15px 25px;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-download:hover {
+    color: #ffffff;
+    background-color: #2f3238;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+/**************************
+******** Features *********
+**************************/
+#about {
+    padding-top: 4.5rem;
+    padding-bottom: 6.5rem;
+    position: relative;
+    display: block;
+    z-index: 20;
+    color: #000000;
+    text-align: center;
+    margin-top: 0px;
+    background:#ffffff;
+}
+.about{ margin-top: 3.25rem }
+
+/**************************
+******* Subscription ******
+**************************/
+#subscribe {
+    padding-top: 4.4rem;
+    padding-bottom: 6.5rem;
+    margin-top: 0px;
+    position: relative;
+    display: block;
+    z-index: 100;
+    text-align: center;
+    background:#000000;
+    color: #ffffff;
+}
+input.subscribe-input {
+    background: transparent;
+    padding: 11px 20px;
+    width: 300px;
+    font-weight: 100;
+    border-radius: 5px;
+}
+.subscribe-input:focus { outline: 0 }
+.subscribe-submit {
+    padding: 12px 20px;
+    background: #da2d2d;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    -webkit-font-smoothing: antialiased;
+}
+.subscribe-submit:hover {
+    color: #ffffff;
+    background-color: #C13030;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+.subscribe-btn {
+    padding: 12px 20px;
+    background: #da2d2d;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    -webkit-font-smoothing: antialiased;
+}
+.subscribe-btn:hover {
+    color: #ffffff;
+    background-color: #C13030;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+
+/**************************
+****** Footer Section *****
+**************************/
+#footer {
+    text-align: center;
+    padding-top: 5.4rem;
+    padding-bottom: 6.5rem;
+    margin-top: 0px;
+    background:#ffffff;
+    color: #000000;
+}
+.social-icons li {
+    display: inline;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
+    color: #000000;
+}
+.social-icons li a { color: #000000; }
+.social-icons li a:hover {
+    color: #da2d2d;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+    -webkit-font-smoothing: antialiased;
+}
+#footer p {
+    font-size: 14px;
+    color: #000000;
+}
