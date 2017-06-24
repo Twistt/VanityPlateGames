@@ -46,23 +46,24 @@
 </head>
 <body>
     <script>
-          window.fbAsyncInit = function() {
-            FB.init({
-              appId            : 'your-app-id',
-              autoLogAppEvents : true,
-              xfbml            : true,
-              version          : 'v2.9'
-            });
-            FB.AppEvents.logPageView();
-          };
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '1944171745861386',
+                    autoLogAppEvents: true,
+                    xfbml: true,
+                    version: 'v2.9'
+                });
+                FB.AppEvents.logPageView();
+            };
 
-          (function(d, s, id){
-             var js, fjs = d.getElementsByTagName(s)[0];
-             if (d.getElementById(id)) {return;}
-             js = d.createElement(s); js.id = id;
-             js.src = "//connect.facebook.net/en_US/sdk.js";
-             fjs.parentNode.insertBefore(js, fjs);
-           }(document, 'script', 'facebook-jssdk'));
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
     </script>
 
 
@@ -237,8 +238,8 @@
     <!-- Other JavaScripts
     ================================================== -->
     <script type="text/javascript" src="/bower_components/js/jquery.easing.min.js"></script>
-    <script type="text/javascript" src="/bower_components/js/retina.js"></script>
-    <script type="text/javascript" src="/bower_components/js/SmoothScroll.js"></script>
+    
+    
     <script type="text/javascript" src="/bower_components/js/wow.min.js"></script>
     <script type="text/javascript" src="/bower_components/js/matchMedia.js"></script>
     <script type="text/javascript" src="/bower_components/js/jquery.backstretch.min.js"></script>
@@ -251,10 +252,25 @@
     <script type="text/javascript" src="/bower_components/js/contact.js"></script>
     <script type="text/javascript" src="/bower_components/js/jquery.ajaxchimp.js"></script>
 
+   
+    
+    
     <!-- MobyApp Custom Scripts
     ================================================== -->
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/site.js"></script>
+    <script>
+            window.setTimeout(function () {
+                FB.getLoginStatus(function (response) {
+                    console.log(response);
 
+                });
+
+            },300);
+    </script>
+    <fb:login-button scope="public_profile,email"
+        onlogin="checkLoginState();">
+    </fb:login-button>
 </body>
 </html>
         

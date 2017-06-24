@@ -1,0 +1,84 @@
+﻿<div class="col-lg-4">
+    <div class="bs-component">
+        <li class="list-group-item"  >
+            <img src="{{workout.Machine.ImageUrl}}" height="20" (click)="workout.ShowOptions=true;"/>
+
+        </li>
+
+    </div>
+</div>
+<div style="width:100%; height:20px;"></div>
+<div class="col-sm-12" style="text-align:center;">
+    <button class="btn btn-default" (click)="ToggleAddWorkout()">Add new Workout</button>
+</div>
+
+<div style="width:100%; height:20px;"></div>
+
+<div class="col-lg-6" ng-if="showAddWorkout">
+    <div class="well bs-component">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Choose Excercise/Machine</legend>
+                <ul class="list-group">
+                    <li ng-repeat="machine in Machines" class="list-group-item" (click)="ChooseMachine(machine)">
+                        <img src="{{machine.ImageUrl}}" height="20" />
+                        <span ng-if="machine.TrackReps" class="badge">reps</span>
+                        <span ng-if="machine.TrackTime" class="badge">time</span>
+                        <span ng-if="machine.TrackSpeed" class="badge">speed</span>
+                        <span ng-if="machine.TrackWeight" class="badge">weight</span>
+                        {{machine.Name}}
+                    </li>
+                </ul>
+                
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<div class="col-lg-6" ng-if="showWorkoutDetails">
+    <div class="well bs-component">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Excercise/Equipment</legend>
+                <div style="text-align:center; border:2px solid purple; position:relative;" (click)="ChoosePhoto()">
+                    <img src="{{ActiveWorkout.Machine.ImageUrl}}" style="padding:10px; height:80px;" />
+                    <span style="font-weight:bold;">{{ActiveWorkout.Machine.Name}}</span>
+
+                </div>
+                <div class="form-group" ng-if="ActiveWorkout.Machine.TrackReps == true">
+                    <label for="inputEmail" class="col-lg-2 control-label">Reps</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="WorkoutReps" placeholder="WorkoutReps" #ActiveWorkout.Reps>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="ActiveWorkout.Machine.TrackTime == true">
+                    <label for="inputEmail" class="col-lg-2 control-label">Time (minutes)</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="WorkoutTime" placeholder="WorkoutTime" #ActiveWorkout.Time>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="ActiveWorkout.Machine.TrackWeight == true">
+                    <label for="WorkoutWeight" class="col-lg-2 control-label">Weight (lbs)</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="WorkoutWeight" placeholder="WorkoutWeight" #ActiveWorkout.Weight>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="ActiveWorkout.Machine.TrackSpeed == true">
+                    <label for="WorkoutSpeed" class="col-lg-2 control-label">Speed (avg mph)</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="WorkoutSpeed" placeholder="WorkoutSpeed" #ActiveWorkout.Speed>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button type="reset" class="btn btn-default" (click)="CancelNewWorkout()">Cancel</button>
+                        <button type="submit" class="btn btn-primary" (click)="SaveWorkout()">Save</button>
+                    </div>
+
+                </div>
+            </fieldset>
+            <input type="file" id="ExcercisePhotoFileSelection" onchange="AppEvents.UploadSelection.raiseEvent(this);" style="display:none;" />
+        </form>
+
+    </div>
+</div>

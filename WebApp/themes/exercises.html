@@ -1,0 +1,77 @@
+﻿
+<div class="col-lg-4">
+    <div class="bs-component">
+        <ul class="list-group">
+            <li ng-repeat="machine in Machines track by id" class="list-group-item">
+                <img src="{{machine.ImageUrl}}" height="20"   (click)="machine.ShowOptions=true;"/>
+                <span ng-if="machine.TrackReps" class="badge">reps</span>
+                <span ng-if="machine.TrackTime" class="badge">time</span>
+                <span ng-if="machine.TrackSpeed" class="badge">speed</span>
+                <span ng-if="machine.TrackWeight" class="badge">weight</span>
+                {{machine.Name}}
+                <div ng-if="machine.ShowOptions" style="width:100%; height:25px;">
+                    <hr />
+                    <button class="btn btn-default" (click)="DeleteExcercises(machine)">Delete</button>
+                    <button class="btn btn-default" (click)="EditExcercises(machine)">Edit</button>
+                    <button class="btn btn-default pull-right" (click)="machine.ShowOptions=false;">Cancel</button>
+                    <div style="width:100%; clear:both;"></div>
+                </div>
+                <div ng-if="machine.ShowOptions" style="width:100%; clear:both;"></div>
+            </li>
+            <!--<li class="list-group-item">
+                <span class="badge">2</span>
+                Dapibus ac facilisis in
+            </li>
+            <li class="list-group-item">
+                <span class="badge">1</span>
+                Morbi leo risus
+            </li>-->
+        </ul>
+    </div>
+</div>
+
+<div class="col-sm-12" style="text-align:center;">
+    <button class="btn btn-default" (click)="ToggleAddNew()">Add new Excercise/Equipment</button>
+</div>
+
+<div style="width:100%; height:20px;"></div>
+
+<div class="col-lg-6" ng-if="addnew === true">
+    <div class="well bs-component">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>Excercise/Equipment</legend>
+                <div style="text-align:center; border:2px solid purple; position:relative;" (click)="ChoosePhoto()">
+                    <img src="themes/images/1.png" style="padding:10px; height:80px;" id="PreviewImage"/>
+                    <span style="font-weight:bold;">Upload Photo</span>
+
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-lg-2 control-label">Name</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="Name" placeholder="Name" #ActiveMachine.Name>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="textArea" class="col-lg-2 control-label">Description</label>
+                    <div class="col-lg-10">
+                        <textarea class="form-control" rows="3" id="Description" #ActiveMachine.Description></textarea>
+                    </div>
+                    <div class="col-lg-10 col-lg-offset-2"><input type="checkbox" id="Reps" #ActiveMachine.TrackReps /> Track Reps</div>
+                    <div class="col-lg-10 col-lg-offset-2"><input type="checkbox" id="Weight" #ActiveMachine.TrackWeight /> Track Weight</div>
+                    <div class="col-lg-10 col-lg-offset-2"><input type="checkbox" id="Speed"  #ActiveMachine.TrackSpeed /> Track Speed</div>
+                    <div class="col-lg-10 col-lg-offset-2"><input type="checkbox" id="Time"  #ActiveMachine.TrackTime /> Track Time</div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button type="reset" class="btn btn-default" (click)="addnew = false">Cancel</button>
+                        <button type="submit" class="btn btn-primary glyphicon-cog" (click)="SaveExercise()">Save</button>
+                    </div>
+
+                </div>
+            </fieldset>
+            <input type="file" id="ExcercisePhotoFileSelection" onchange="AppEvents.UploadSelection.raiseEvent(this);" style="display:none;"/>
+        </form>
+        
+    </div>
+</div>
