@@ -1,0 +1,37 @@
+﻿<menu style="width:100%; padding-left:0px;"></menu>
+<div style="padding:10px;">
+
+    <div ng-if="ActivePage() === 'login'">
+        <h2>Vanity Plate Games</h2>
+        <p>
+            Vanity Plate Games is a super fun way to post interesting or tough license plates so you and others can comment and figure out what they are!
+        </p>
+        <div class="col-lg-4">
+            <div class="bs-component" style="text-align:center;">
+                <!--<div class="list-group">
+                    <a href="#" class="list-group-item">
+
+                        <h4 class="list-group-item-heading">Weekly Summary</h4>
+                        <p ng-if="WorkoutList.length === 0">You have not recorded any workouts yet.</p>
+
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <h4 class="list-group-item-heading">Monthly Summary</h4>
+                        <p ng-if="WorkoutList.length === 0">You have not recorded any workouts yet.</p>
+                    </a>
+                </div>-->
+                <login></login>
+            </div>
+        </div>
+
+    </div>
+    <div ng-if="ActivePage() === 'play'">
+        <play></play>
+    </div>
+    <div ng-if="ActivePage() === 'uploads'">
+        <uploads></uploads>
+    </div>
+    <div id="footerStrip" class="text-center"><span>&copy; Arachnid Creations, Inc.</span>
+        <button ng-if="ActivePage() !== 'login'" class="pull-right btn btn-default" style="padding:2px;" (click)="LogoutOfFacebook()">Logout</button>
+    </div>
+</div>

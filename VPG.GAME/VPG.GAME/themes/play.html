@@ -1,0 +1,24 @@
+﻿<div class="col-lg-4">
+    <div class="bs-component">
+        <div  style="text-align:center;" >
+            <label>{{ActivePlateImage.Name}}</label>
+            <img style="width:90%;" id="MainPlateImage"/>
+            <label>{{ActivePlateImage.Description}}</label>
+            <button style="width:100%" class="btn btn-default" (click)="GetRandomImage()">Next Random Image</button>
+        </div>
+        <hr />
+        <button style="width:100%" class="btn btn-default" (click)="ToggleShowComments()">Show {{ActivePlateImage.Comments.Length}} Comments</button>
+
+        <div ng-if="ShowActivePlateComments === true">
+            <li ng-repeat="comment in ActivePlateImage.Comments" class="list-group-item"><img src=""><span>{{comment.Message}}</span></li>
+
+            <li class="list-group-item">
+                <input class="btn btn-default pull-left" #ActiveComment.Message/>
+                <button class="btn btn-default pull-right" (click)="PostComment()">Post</button>
+                <div style="width:100%; height:5px; clear:both"></div>
+            </li>
+        </div>
+
+</div>
+</div>
+<div style="width:100%; height:20px;"></div>

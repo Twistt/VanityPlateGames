@@ -6,8 +6,9 @@ function ApplicationBase() {
     this.ActivePage = "login";
     this.Machines = [];
     this.WorkoutList = [];
-    this.ApiRoot = "";
+    this.ApiRoot = "http://localhost:53322/api/";
     this.FacebookUser = null;
+    this.AuthResponse = null;
 }
 var Application = new ApplicationBase();
 var Vanity = localStorage.getItem("Vanity");
@@ -26,7 +27,8 @@ var AppEvents = {
     OnCommentSent: new Event(),
     OnCommentRecieved: new Event(),
     OnFacebookLogin: new Event(),
-    OnFacebookLogout: new Event()
+    OnFacebookLogout: new Event(),
+    StartUpload: new Event()
 }
 function Page() {
     this.Name = "NA";
@@ -80,26 +82,24 @@ function PlayGame(service, $scope) {
     this.inheritFrom(service);
     AppEvents.OnNav.subscribe(function (page) {
 
-        if (page === "play") var data = HydraUtils.GetData(APIRoot + "CacheData/GetDataDiff?LastUpdate=" + Application.LastUpdate.Dotnet(), "GET");
+       // if (page === "play") var data = HydraUtils.GetData(ApplicationAPIRoot + "CacheData/GetDataDiff?LastUpdate=" + Application.LastUpdate.Dotnet(), "GET");
     });
     this.init = function () { }
     this.init();
 }
-function Excercises(service, $scope) {
+function Uploads(service, $scope) {
     var me = this;
     this.addnew = false;
-    this.ActiveMachine = new Machine();
     this.inheritFrom = Main;
     this.inheritFrom(service);
 
     this.ToggleAddNew = function () {
         //Application.Machines.push(me.ActiveMachine);
-        me.ActiveMachine = new Machine();
         me.addnew = true;
         //SaveApplication();
     }
     this.ChoosePhoto = function () {
-        $("#ExcercisePhotoFileSelection").trigger("click");
+        $("#UploadPhotoFileSelection").trigger("click");
     }
     this.readURL = function (input) {
         if (input.files && input.files[0]) {
@@ -107,39 +107,66 @@ function Excercises(service, $scope) {
 
             reader.onload = function (e) {
                 $('#PreviewImage').attr('src', e.target.result);
-                me.ActiveMachine.ImageUrl = e.target.result;
-
             }
             reader.readAsDataURL(input.files[0]);
         }
     }
-    this.SaveExercise = function () {
-        var pos = Application.Machines.position("id", me.ActiveMachine.id);
-        if (pos > 0) {
-            me.addnew = false;
-            this.ActiveMachine.ShowOptions = false;
-        } else {
-            Application.Machines.push(me.ActiveMachine);
-            me.addnew = false;
-        }
+    this.StartUpload = function () {
+        AppEvents.StartUpload.raiseEvent();
 
         SaveApplication();
     }
     AppEvents.UploadSelection.subscribe(me.readURL);
-    this.ClickedOnExcercise = function (machine) {
+    AppEvents.StartUpload.subscribe(function () {
+        var form = document.getElementById('uploadForm');
+        var fileSelect = document.getElementById('UploadPhotoFileSelection');
+        var uploadButton = document.getElementById('fileUploadButton');
+        var files = fileSelect.files;
+        // Create a new FormData object.
+        var formData = new FormData();
+        formData.append("fileid", $("#ParentFileId").val());
+        // Loop through each of the selected files.
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+
+            console.log(file);
+            // Add the file to the request.
+            // Files
+            formData.append(name, file, file.name);
+        }
+        // Set up the request.
+        var xhr = new XMLHttpRequest();
+        // Open the connection.
+        xhr.upload.onprogress = me.onProgress;
+        //xhr.addEventListener("progress", me.onProgress);
+        //xhr.onprogress = me.onProgress;
+        xhr.upload.addEventListener("progress", me.onProgress);
+        xhr.addEventListener("load", me.onLoad);
+        xhr.addEventListener("error", me.transferFailed);
+        xhr.addEventListener("abort", me.transferCanceled);
+        alert(Application.ApiRoot);
+        xhr.open('POST', Application.ApiRoot + 'api/Game/PostFormData', true);
+        xhr.setRequestHeader("Token", Application.AuthResponse.accessToken);
+
+        // Send the Data.
+        xhr.send(formData);
+        uploadButton.innerHTML = 'Uploading...';
+    });
+    this.ClickedOnUpload = function (machine) {
         machine.ShowOptions = true;
     }
-    this.DeleteExcercises = function (machine) {
+    this.DeleteUploads = function (machine) {
         var pos = Application.Machines.position("id", machine.id);
         Application.Machines.splice(pos, 1);
         SaveApplication();
     }
-    this.EditExcercises = function (machine) {
+    this.Edits = function (machine) {
         me.ActiveMachine = machine;
         window.setTimeout(function () { $('#PreviewImage').attr('src', machine.ImageUrl); }, 200)
         me.addnew = true;
 
     }
+    
 }
 function Login(service, $scope) {
     var me = this;
@@ -159,6 +186,7 @@ function Login(service, $scope) {
         }, { scope: 'email' });
     }
     AppEvents.OnFacebookLogin.subscribe(function (resp) {
+        Application.AuthResponse = resp.authResponse;
         FB.api('/me', function (response) {
             console.log(JSON.stringify(response));
             Application.FacebookUser = response;
@@ -201,15 +229,26 @@ function Menu(service, $scope) {
     this.inheritFrom = Main;
     this.inheritFrom(service);
 }
+function trimFileName(ele) { //File selected EVENT
+    var val = $(ele).val();
+    var s = val.split('\\');
+    var item = s[s.length - 1];
+
+    $("#FileName").html(item);
+    $("#fileUploadButton").removeClass("disabled");
+    $("#fileUploadButton").addClass("bgm-green");
+}
 
 document.addEventListener('DOMContentLoaded', function () {
-    var PublicViewDependancies = ['Application', 'LogoutOfFacebook', 'DeleteExcercises', 'EditExcercises', 'ClickedOnExcercise', 'ClickedOnWorkout', 'showWorkoutDetails', 'CancelNewWorkout', 'SaveWorkout', 'ActiveWorkout', 'ChooseMachine', 'showAddWorkout', 'ToggleAddWorkout', 'SaveExercise', 'ChoosePhoto', 'addnew', 'ActiveMachine', 'WorkoutList', 'Machines', 'ToggleAddNew', 'ActivePage', 'ChangePage'];
+    var PublicViewDependancies = ['Application', 'LogoutOfFacebook', 'DeleteUploads', 'EditUploads', 'ClickedOnUpload', 'ClickedOnWorkout', 'showWorkoutDetails', 'CancelNewWorkout', 'SaveWorkout', 'ActiveWorkout', 'ChooseMachine', 'showAddWorkout', 'ToggleAddWorkout', 'SaveExercise', 'ChoosePhoto', 'addnew', 'ActiveMachine', 'WorkoutList', 'Machines', 'ToggleAddNew', 'ActivePage', 'ChangePage'];
     var LoginDependancies = PublicViewDependancies.slice(0).concat(['LoginWithFacebook']);
+    var UploadDependances = PublicViewDependancies.slice(0).concat(['StartUpload']);
+    
     var mainpage = new AngularHydra("mainpage", [angular.NgFor, angular.NgIf], service)
 	.View("/themes/MainPage.html")
 	.Class("mainControl", Main, PublicViewDependancies)
         .AddView("/themes/login.html", "login", "loginControl", Login, LoginDependancies, service, "E")
-        .AddView("/themes/exercises.html", "excercises", "excercisesControl", Excercises, PublicViewDependancies, service, "E")
+        .AddView("/themes/uploads.html", "uploads", "uploadsControl", Uploads, UploadDependances, service, "E")
     .AddView("/themes/play.html", "play", "playControl", PlayGame, PublicViewDependancies, service, "E")
     .AddView("/themes/nav.html", "menu", "menuControl", Menu, PublicViewDependancies, service, "E")
 	.Create("MainPage");

@@ -232,7 +232,7 @@ function HydraUtilities() {
             if (data.currentTarget.status === 401) me.Response401.raiseEvent(data.currentTarget.statusText);
         }
         xmlhttp.open(type, ep, false);
-        xmlhttp.setRequestHeader("Token", Application.User.Token);
+        xmlhttp.setRequestHeader("Token", Application.FacebookUser.authResponse.accessToken);
         if (type === "POST" && content !== null) {
             xmlhttp.setRequestHeader("Content-Type", "application/json");
             xmlhttp.send(JSON.stringify(content));

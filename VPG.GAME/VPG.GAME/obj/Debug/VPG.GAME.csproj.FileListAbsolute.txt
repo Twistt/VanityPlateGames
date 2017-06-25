@@ -44,3 +44,10 @@ C:\Development\VanityPlateGames.com\GitVanityPlateGames\VPG.GAME\VPG.GAME\bin\Sy
 C:\Development\VanityPlateGames.com\GitVanityPlateGames\VPG.GAME\VPG.GAME\obj\Debug\VPG.GAME.csprojResolveAssemblyReference.cache
 C:\Development\VanityPlateGames.com\GitVanityPlateGames\VPG.GAME\VPG.GAME\obj\Debug\VPG.GAME.dll
 C:\Development\VanityPlateGames.com\GitVanityPlateGames\VPG.GAME\VPG.GAME\obj\Debug\VPG.GAME.pdb
+C:\Development\VanityPlateGames.com\GitVanityPlateGames\VPG.GAME\VPG.GAME\bin\ArachnidCreations.DevTools.dll
+C:\Development\VanityPlateGames.com\GitVanityPlateGames\VPG.GAME\VPG.GAME\bin\ArachnidCreations.DevTools.pdb
+C:\Development\VanityPlateGames.com\GitVanityPlateGames\VPG.GAME\VPG.GAME\bin\System.Web.Cors.dll
+C:\Development\VanityPlateGames.com\GitVanityPlateGames\VPG.GAME\VPG.GAME\bin\System.Web.Http.Cors.dll
+C:\Development\VanityPlateGames.com\GitVanityPlateGames\VPG.GAME\VPG.GAME\bin\System.Web.Http.Cors.xml
+C:\Development\VanityPlateGames.com\GitVanityPlateGames\VPG.GAME\VPG.GAME\bin\Imager.dll
+C:\Development\VanityPlateGames.com\GitVanityPlateGames\VPG.GAME\VPG.GAME\bin\Imager.pdb

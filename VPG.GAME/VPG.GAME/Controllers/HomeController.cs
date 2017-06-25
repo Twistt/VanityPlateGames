@@ -22,8 +22,21 @@ namespace VPG.GAME.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult Press()
+        {
+
+            return View();
+        }
+        public ActionResult Privacy()
+        {
+            return View();
+        }
+        public ActionResult TermsOfService()
+        {
             return View();
         }
     }
