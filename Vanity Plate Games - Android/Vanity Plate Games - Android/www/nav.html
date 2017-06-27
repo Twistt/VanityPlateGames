@@ -1,0 +1,9 @@
+﻿<h1 style="text-align:center;"><img src="images/LogoWhite.png" height="100" /></h1>
+<div class="bs-component" style="margin-left:0px; margin-bottom: 15px; padding:5px;">
+  
+    <div ng-if="ActivePage() !=='login'" class="btn-group btn-group-justified">
+        <a href="#" (click)="ChangePage('play')" class="btn btn-default" ng:class="{true:'active', false:''}[ActivePage() ==='plan']">Play</a>
+        <a href="#" (click)="ChangePage('uploads')" class="btn btn-default" ng:class="{true:'active', false:''}[ActivePage() ==='uploads']">Upload</a>
+        
+    </div>
+</div>

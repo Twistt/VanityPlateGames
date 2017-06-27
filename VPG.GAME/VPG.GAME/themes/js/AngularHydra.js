@@ -223,7 +223,7 @@ function HydraUtilities() {
     this.PostRequest = new Event();
     this.Response200 = new Event();
     this.Response401 = new Event();
-    this.GetData = function (ep, type, content, callback) {
+    this.GetData = function (ep, type, content, callback, dontsetheader) {
         //www.myapi.com/api/controller/method/id, "GET" 
         me.PreRequest.raiseEvent();
         if (type === undefined) type = "GET";
@@ -232,7 +232,7 @@ function HydraUtilities() {
             if (data.currentTarget.status === 401) me.Response401.raiseEvent(data.currentTarget.statusText);
         }
         xmlhttp.open(type, ep, false);
-        xmlhttp.setRequestHeader("Token", Application.AuthResponse.accessToken);
+        if (dontsetheader !== true) xmlhttp.setRequestHeader("Token", Application.GBAccessToken);
         if (type === "POST" && content !== null) {
             xmlhttp.setRequestHeader("Content-Type", "application/json");
             xmlhttp.send(JSON.stringify(content));

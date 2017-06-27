@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>Vanity Plate Games</title>
+    <link rel="stylesheet" href="Bootstrap.min.css">
+    
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script><!-- Latest compiled and minified JavaScript -->
+    <script src="js/Events.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angularhydra.js"></script>
+    <script src="js/mainapp.js"></script>
+    <style>
+        #footerStrip { position: fixed; bottom: 0px; left: 0px; width: 100%; height: 30px; background-color: #2e2e2e; padding: 2px; }
+    </style>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+            window.fbAsyncInit = function() {
+            FB.init({
+                appId: '1944171745861386',
+                autoLogAppEvents : true,
+                xfbml            : true,
+                version          : 'v2.9'
+            });
+            FB.AppEvents.logPageView();
+            };
+
+
+    </script>
+</head>
+<body>
+    <div style="float:left;width:100%;">
+        <mainpage></mainpage>
+     </div>
+</body>
+</html>
