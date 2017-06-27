@@ -463,6 +463,7 @@
     <Content Include="themes\images\icons-png\video-black.png" />
     <Content Include="themes\images\icons-png\video-white.png" />
     <Content Include="themes\images\LogoWhite.png" />
+    <Content Include="themes\images\ybxhrgeghjrgspuktvap.jpg" />
     <Content Include="themes\jquery.mobile.icons.min.css" />
     <Content Include="themes\js\angular.min.js" />
     <Content Include="themes\js\angular2.sfx.dev.js" />
