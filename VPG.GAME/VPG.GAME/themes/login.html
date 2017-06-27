@@ -3,6 +3,10 @@
     <button ng-if="Application.FacebookUser !== null" class="btn btn-primary center"><img src="" id="fbImage" />  Play Now!</button>
     <button ng-if="Application.FacebookUser === null" class="btn btn-primary center" (click)="LoginWithFacebook()">Login with Facebook to play!</button>
 </div>
-<a href="https://www.facebook.com/v2.9/dialog/oauth?client_id=1944171745861386&redirect_uri=http://www.vanityplategames.com/play&response_type=token">
+<a href="https://www.facebook.com/v2.9/dialog/oauth?client_id=1944171745861386&redirect_uri=http://www.vanityplategames.com/play&response_type=token"  target="_self">
     <button ng-if="Application.FacebookUser === null" class="btn btn-primary center">Login with Facebook to play!</button>
 </a>
+
+<div id="debug">
+
+</div>

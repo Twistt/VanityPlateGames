@@ -5,8 +5,10 @@ function ApplicationBase() {
     this.Pages = [{ Name: "login", Active: true }];
     this.ActivePage = "login";
     this.ApiRoot = "http://www.vanityplategames.com/api/";
+    //this.ApiRoot = "http://localhost:53322/api/";
     this.FacebookUser = null;
     this.AuthResponse = null;
+    this.User = null;
 }
 
 function Comment() {
@@ -38,7 +40,9 @@ var AppEvents = {
     OnFacebookLogout: new Event(),
     StartUpload: new Event(),
     GetUploadList: new Event(),
-    NewPlateImage: new Event()
+    NewPlateImage: new Event(),
+    EnteredPlayMode: new Event()
+
 }
 function Page() {
     this.Name = "NA";
@@ -67,15 +71,9 @@ function Main(service, $scope) {
     }
     this.LogoutOfFacebook = function () {
         me.ChangePage("login");
-
-        try {
-            FB.logout(function (response) {
-                AppEvents.OnFacebookLogout.raiseEvent(response);
-            });
-        } catch (exc) { }
         Application.FacebookUser = null;
         Application.AuthResponse = null;
-        localStorage.setItem("Vanity",'');
+        localStorage.setItem("Vanity", '');
     }
     this.init = function () {
 
@@ -105,23 +103,30 @@ function PlayGame(service, $scope) {
             me.ActivePlateImage = data;
             console.log(data);
             window.setTimeout(function () {
-                $("#MainPlateImage").attr("src", "/play/ShowImage?width=500&height=400&quality=50&imageid="+data.Id);
+                $("#MainPlateImage").attr("src", "/play/ShowImage?width=500&height=400&quality=50&imageid=" + data.Id);
             }, 200);
             AppEvents.NewPlateImage.raiseEvent();
         }
     }
+    AppEvents.EnteredPlayMode.subscribe(function () {
+        window.setTimeout(function () {
+            alert("gettin' the random image arg");
+            me.GetRandomImage();
+            $scope.$apply();
+        }, 500);
+    });
     AppEvents.OnNav.subscribe(function (page) {
         if (me.ActivePage() === "play") {
             window.setTimeout(function () {
                 me.GetRandomImage();
                 $scope.$apply();
-            }, 300);
-            
+            }, 500);
+
         }
 
     });
     AppEvents.NewPlateImage.subscribe(function () {
-        
+
 
     });
     this.init = function () { }
@@ -233,51 +238,49 @@ function Login(service, $scope) {
         HydraUtils.GetData("", "GET");
     }
     this.LoginWithFacebook = function () {
-        FB.login(function (response) {
-            console.log(response);
-            if (response.status === "connected") {
-                AppEvents.OnFacebookLogin.raiseEvent(response);
-                $scope.$apply();
-            }
-        }, { scope: 'email' });
+
+        url = window.location.href;
+        url = url.replace("#", "").replace("?", "&");
+
+        var res = url.split("&");
+        var token = res[1].replace("access_token=", "");
+        console.log(token);
+        Application.GBAccessToken = token;
+        var fbme = HydraUtils.GetData("https://graph.facebook.com/v2.9/me/?client_id=1944171745861386&access_token=" + token, "GET", null, undefined, true);
+        Application.FacebookUser = fbme;
+        AppEvents.OnFacebookLogin.raiseEvent(fbme);
+
+
+
+        //FB.login(function (response) {
+        //    console.log(response);
+        //    if (response.status === "connected") {
+        //        AppEvents.OnFacebookLogin.raiseEvent(response);
+        //        $scope.$apply();
+        //    }
+        //}, { scope: 'email' });
     }
     AppEvents.OnFacebookLogin.subscribe(function (resp) {
-        Application.AuthResponse = resp.authResponse;
-        FB.api('/me', function (response) {
-            console.log(JSON.stringify(response));
-            Application.FacebookUser = response;
-            var data = HydraUtils.GetData(Application.ApiRoot + "Account/AuthenticateAsFacebookUser/?userid=" + Application.FacebookUser.id + "&name=" + Application.FacebookUser.name, "GET");
-            FB.api(
-                "/" + Application.FacebookUser.id + "/picture",
-                function (response) {
-                    if (response && !response.error) {
-                        /* handle the result */
-                        console.log(response);
-                        $("#fbImage").attr("src", response.data.url);
-                        me.ChangePage("play");
-                        $scope.$apply();
-                    }
-                    
-                }
-            );
-        });
+        var data = HydraUtils.GetData(Application.ApiRoot + "Account/AuthenticateAsFacebookUser/?userid=" + resp.id + "&name=" + resp.name, "GET");
+        Application.User = data;
+        console.log("UserData", data);
+        if (data !== null && data.Id !== 0) {
+            console.log("should be going to play mode...");
+            me.ChangePage('play');
+            AppEvents.EnteredPlayMode.raiseEvent();
+            $scope.$apply();
+        }
     });
     this.init = function () {
         window.setTimeout(function () {
-            try {
-                
-                FB.getLoginStatus(function (response) {
-                    console.log(response);
-                    if (response.status !== "unknown") AppEvents.OnFacebookLogin.raiseEvent(response);
-                    else Application.FacebookUser = null;
-                });
-                $scope.$apply();
+
+            var url = window.location.href;
+            if (url.contains("access_token")) {
+                //alert("DUDE we got a token!");
+                me.LoginWithFacebook();
             }
-            catch (exp){
-                window.setTimeout(function () { me.init(); }, 100);
-            }
-                
-            
+
+
         }, 300);
     }
     this.init();
@@ -302,8 +305,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var LoginDependancies = PublicViewDependancies.slice(0).concat(['LoginWithFacebook']);
     var UploadDependances = PublicViewDependancies.slice(0).concat(['UploadList', 'StartUpload']);
     var PlayDependances = PublicViewDependancies.slice(0).concat(['ActivePlateImage', 'GetRandomImage', 'ShowActivePlateComments', 'ToggleShowComments', 'ActiveComment', 'PostComment']);
-    
-    
+
+
     var mainpage = new AngularHydra("mainpage", [angular.NgFor, angular.NgIf], service)
 	.View("MainPage.html")
 	.Class("mainControl", Main, PublicViewDependancies)
@@ -314,3 +317,5 @@ document.addEventListener('DOMContentLoaded', function () {
 	.Create("MainPage");
 
 });
+
+

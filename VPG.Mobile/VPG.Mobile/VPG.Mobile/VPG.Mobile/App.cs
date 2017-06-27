@@ -11,13 +11,15 @@ namespace VPG.Mobile
     {
         public App()
         {
+
             // The root page of your application
             var content = new ContentPage
             {
-
+                Title = null,
                 Content = new WebView
                 {
-                    Source = "http://www.VanityPlateGames.com/Play"
+                    Source = "http://www.VanityPlateGames.com/Play",
+                   
                 }
             };
 

@@ -1286,7 +1286,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/26/2017 18:50:38</publishTime>
     </File>
     <File Include="themes/login.html">
-      <publishTime>06/26/2017 18:11:41</publishTime>
+      <publishTime>06/26/2017 21:06:18</publishTime>
     </File>
     <File Include="themes/MainPage.html">
       <publishTime>06/24/2017 14:25:21</publishTime>
