@@ -1,3 +1,5 @@
 obj
 bin
 packages
+/VPG.GAME/.vs/VPG.GAME/v14/*.suo
+*.suo
