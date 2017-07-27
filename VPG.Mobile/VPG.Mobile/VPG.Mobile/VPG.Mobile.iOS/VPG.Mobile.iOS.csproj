@@ -13,6 +13,7 @@
     <AssemblyName>VPG.Mobile.iOS</AssemblyName>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>C:\Development\VanityPlateGames.com\APKs\publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -63,9 +63,10 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchDebug>true</MtouchDebug>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Distribution: Arachnid Creations, Inc. (S2Q4X3UGJE)</CodesignKey>
+    <MtouchDebug>false</MtouchDebug>
+    <CodesignEntitlements>Info.plist</CodesignEntitlements>
+    <CodesignProvision>34014ce2-ef53-421e-86be-6eb1c6097cf8</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -102,6 +103,7 @@
     <CodesignProvision>34014ce2-ef53-421e-86be-6eb1c6097cf8</CodesignProvision>
     <CodesignKey>iPhone Distribution: Arachnid Creations, Inc. (S2Q4X3UGJE)</CodesignKey>
     <CodesignEntitlements>Info.plist</CodesignEntitlements>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>2E15668CA13AC55D5EEB6252DE10D28660C674B1</ManifestCertificateThumbprint>
@@ -110,10 +112,16 @@
     <ManifestKeyFile>VPG.Mobile.iOS_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -124,6 +132,7 @@
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork@2x" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="VPG.Mobile.iOS_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
