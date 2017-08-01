@@ -363,8 +363,10 @@
     <Content Include="Images\Screenshot_PlayMode.PNG" />
     <Content Include="Images\Screenshot_Upload.jpg" />
     <Content Include="Images\Screenshot_Upload.PNG" />
+    <Content Include="Images\Screenshot_Upload_2.png" />
     <Content Include="Images\Screenshot_with_phone.PNG" />
     <Content Include="Images\Screenshot_with_phone_upload.PNG" />
+    <Content Include="Images\screnshot_play_with_bg.jpg" />
     <Content Include="Images\Spinner.gif" />
     <Content Include="index.html" />
     <Content Include="PrivacyPolicy.html" />
