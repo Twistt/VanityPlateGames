@@ -356,6 +356,15 @@
     <Content Include="Images\1.jpg" />
     <Content Include="Images\1.png" />
     <Content Include="Images\1a.jpg" />
+    <Content Include="Images\iphone_Screenshot_PlayMode.png" />
+    <Content Include="Images\iphone_Screenshot_Upload.png" />
+    <Content Include="Images\Screenshot_Login.PNG" />
+    <Content Include="Images\Screenshot_PlayMode.jpg" />
+    <Content Include="Images\Screenshot_PlayMode.PNG" />
+    <Content Include="Images\Screenshot_Upload.jpg" />
+    <Content Include="Images\Screenshot_Upload.PNG" />
+    <Content Include="Images\Screenshot_with_phone.PNG" />
+    <Content Include="Images\Screenshot_with_phone_upload.PNG" />
     <Content Include="Images\Spinner.gif" />
     <Content Include="index.html" />
     <Content Include="PrivacyPolicy.html" />

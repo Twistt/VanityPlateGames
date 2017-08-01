@@ -1310,7 +1310,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/24/2017 21:28:56</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>06/24/2017 21:35:39</publishTime>
+      <publishTime>07/31/2017 18:02:17</publishTime>
     </File>
     <File Include="Views/Home/Press.cshtml">
       <publishTime>06/24/2017 21:32:58</publishTime>
@@ -1319,7 +1319,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/24/2017 23:14:26</publishTime>
     </File>
     <File Include="Views/Home/TermsOfService.cshtml">
-      <publishTime>06/24/2017 21:40:27</publishTime>
+      <publishTime>07/31/2017 18:01:20</publishTime>
     </File>
     <File Include="Views/Play/Index.cshtml">
       <publishTime>06/24/2017 14:21:39</publishTime>
@@ -1328,10 +1328,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/18/2017 14:53:50</publishTime>
     </File>
     <File Include="Views/Shared/_GameLayout.cshtml">
-      <publishTime>06/27/2017 12:03:15</publishTime>
+      <publishTime>06/27/2017 12:08:46</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>06/27/2017 12:00:00</publishTime>
+      <publishTime>07/31/2017 18:00:08</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>06/18/2017 14:53:50</publishTime>
